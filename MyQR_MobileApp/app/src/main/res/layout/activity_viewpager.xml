@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gw.swipeback.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeBackLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            >
+    <Button
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/button1"
+    android:text="Mes Scans"
+    android:layout_weight="50"
+    android:background="@color/colorPrimary"
+        android:textColor="@color/white"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2"
+                android:text="Click moi"
+                android:layout_weight="50"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></androidx.viewpager.widget.ViewPager>
+    </LinearLayout>
+</com.gw.swipeback.SwipeBackLayout>

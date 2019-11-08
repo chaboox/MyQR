@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ajout</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/goodlogo.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" id="user-form">
+				<span class="contact100-form-title">
+					Ajouter locataire
+				</span>
+
+				<div class="loaderSpin" id="loader"></div>
+
+				<!-- Nom -->
+				<div class="wrap-input100 validate-input" data-validate="Nom obligatoire">
+					<span class="label-input100">Nom complet</span>
+					<input class="input100" type="text" id="name" name="name" placeholder="Nom du locataire">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Email -->
+				<div class="wrap-input100 validate-input" data-validate = "Email valide obligatoire: ex@abc.xyz">
+					<span class="label-input100">Email</span>
+					<input class="input100" type="text" id="email" name="email" placeholder="Email du locataire">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Téléphone -->
+				<div class="wrap-input100 validate-input" data-validate = "Téléphone obligatoire">
+						<span class="label-input100">Téléphone</span>
+						<input class="input100" type="text" id="telephone" name="telephone" placeholder="Numéro de téléphone du locataire">
+						<span class="focus-input100"></span>
+				</div>
+
+				<!-- Type User -->
+				<div class="wrap-input100 input100-select">
+						<span class="label-input100">Type</span>
+						<div>
+							<select id="selectResident" class="selection-2" name="budget">
+								<option value="proprio">Propriétaire</option>
+								<option value="locataire">Locataire</option>
+							</select>
+						</div>
+						<span class="focus-input100"></span>
+				</div>
+
+				<!-- Type Logement -->
+				<div class="wrap-input100 input100-select">
+						<span class="label-input100">Logement</span>
+						<div>
+							<select id="selectLogement" class="selection-2" name="service">
+								<option value="bloc">Bloc</option>
+								<option value="villa">Villa</option>
+							</select>
+						</div>
+						<span class="focus-input100"></span>
+					</div>
+	
+
+				<!-- Ilot -->
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Ilot</span>
+					<div>
+						<select id="selectIlot" class="selection-2" name="service">
+							<!--<option>N° 1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- DIV BLOC -->
+				<div id="div_bloc" class="divbloc">
+
+				<!-- Bloc -->
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Bloc</span>
+					<div>
+						<select id="selectBloc" class="selection-2" name="budget">
+							<!--<option>A</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Etage -->
+				<div selectBloc class="wrap-input100 input100-select">
+					<span class="label-input100">Etage</span>
+					<div>
+						<select id="selectEtage" class="selection-2" name="budget">
+							<!--<option>1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Apt -->
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Appartement</span>
+					<div>
+						<select id="selectApt" class="selection-2" name="budget">
+							<!--<option>1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				</div>
+				<!-- END DIV BLOC -->
+
+
+
+				<!-- DIV VILLA -->
+				<div id="div_villa" class="divvilla">
+
+				<!-- Villa -->
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Villa</span>
+					<div>
+						<select id="selectVilla" class="selection-2" name="budget">
+							<!--<option>N° 1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				</div>
+				<!-- END DIV VILLA -->
+				
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button type="submit" class="contact100-form-btn">
+							<span>
+								Modifier
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-database.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD8S3UbfAQdo-4_JZDIa6QOffy6xgcoseQ",
+    authDomain: "giryad-c0e72.firebaseapp.com",
+    databaseURL: "https://giryad-c0e72.firebaseio.com",
+    projectId: "giryad-c0e72",
+    storageBucket: "giryad-c0e72.appspot.com",
+    messagingSenderId: "870451114024"
+  };
+	firebase.initializeApp(config);
+	
+	//sign in anon
+</script>
+
+<script>
+// ----- SELECTOR ONCHANGE SCRIPT ----- \\
+
+//Select Type Logement
+divbloc = document.getElementById('div_bloc');
+divvilla = document.getElementById('div_villa');
+$("#selectLogement").change(function(){
+		//alert('Selected value: ' + $(this).val());
+		var logement = $(this).val();
+		console.log(logement);
+
+		console.log("bloc: "+divbloc);
+		console.log("villa: "+divvilla);
+		
+		if(logement == 'bloc'){
+			divbloc.style.display = "block";
+			divvilla.style.display = "none";
+		}
+		else if(logement == 'villa'){
+			divvilla.style.display = "block";
+			divbloc.style.display = "none";
+		}
+
+		});
+
+//Select Ilot
+$("#selectIlot").change(function(){
+		//alert('Selected value: ' + $(this).val());
+		var numIlot = $(this).val();
+		console.log(numIlot);
+
+		getBlocPerIlot(numIlot);
+		getVillaPerIlot(numIlot);
+
+		});
+
+//Select Bloc
+$("#selectBloc").change(function(){
+		//alert('Selected value: ' + $(this).val());
+		var numBloc = $(this).val();
+		console.log(numBloc);
+
+		
+		var ilotSelect = document.getElementById('selectIlot');
+		var numIlot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		getEtagePerBloc(numIlot, numBloc);
+
+		});
+
+//Select Etage
+$("#selectEtage").change(function(){
+		//alert('Selected value: ' + $(this).val());
+		var numEtage = $(this).val();
+		console.log(numEtage);
+
+		
+		var ilotSelect = document.getElementById('selectIlot');
+		var numIlot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		
+		var blocSelect = document.getElementById('selectBloc');
+		var numBloc = blocSelect.options[blocSelect.selectedIndex].value;
+		getAptPerEtage(numIlot, numBloc, numEtage);
+
+		});
+</script>
+
+<script>
+	var database = firebase.database();
+
+	
+	var Ref = database.ref('ilot');
+	
+	console.log("before cleaning ilot");
+	var arrayIlot = [];
+	Ref.on('value', function(snapshot) {
+		arrayIlot = [];
+		snapshot.forEach(function(childSnapshot) {
+		
+		var numIlot = childSnapshot.key;
+		console.log("num ilot: "+numIlot);
+		  
+		arrayIlot.push(numIlot);
+	
+		});
+	
+		console.log("done ilot!");
+		console.log("array ilot : "+arrayIlot);
+		//document.getElementById("loader").style.display = "none";
+		document.getElementById("loader").style.visibility = "hidden";
+		populateIlot(arrayIlot);
+	
+	
+	});
+	
+
+	var residentSelect = document.getElementById('selectResident');
+	var logementSelect = document.getElementById('selectLogement');
+
+
+	var ilotSelect = document.getElementById('selectIlot');
+	function populateIlot(arrayIlot) {
+		ilotSelect.innerHTML = "";
+		console.log("from method ilot");
+		index=0;
+		for(i=0; i < arrayIlot.length; i++){
+			var numIlot = arrayIlot[i];
+			   var opt = document.createElement("option");
+			   opt.value = numIlot;
+			   opt.innerHTML = "N° "+numIlot; // whatever property it has
+	
+			   // then append it to the select element
+			   ilotSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numIlot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		   getBlocPerIlot(numIlot);
+		   getVillaPerIlot(numIlot);
+	}
+
+	function getBlocPerIlot(numIlot) {
+		var arrayBloc = [];
+		var Ref = database.ref('ilot/'+numIlot+'/bloc');
+		Ref.on('value', function(snapshot) {
+				arrayBloc = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numBloc = childSnapshot.key;
+		  		console.log("bloc : "+numBloc);
+		  
+				arrayBloc.push(numBloc);
+				  
+				  });
+	
+		console.log("done bloc!");
+		populateSelectBloc(numIlot, arrayBloc);
+		
+		});
+
+	}
+
+	function getVillaPerIlot(numIlot) {
+		var arrayVilla = [];
+		var Ref = database.ref('ilot/'+numIlot+'/villa');
+		Ref.on('value', function(snapshot) {
+				arrayVilla = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numVilla = childSnapshot.key;
+		  		console.log("bloc : "+numVilla);
+		  
+				  arrayVilla.push(numVilla);
+				  
+				  });
+	
+		console.log("done villa!");
+		populateSelectVilla(numIlot, arrayVilla);
+		
+		});
+
+	}
+
+
+	var blocSelect = document.getElementById('selectBloc');
+	function populateSelectBloc(numIlot, arrayBloc) {
+		blocSelect.innerHTML = "";
+		console.log("from method bloc");
+		index=0;
+		for(i=0; i < arrayBloc.length; i++){
+			var numBloc = arrayBloc[i];
+			   var opt = document.createElement("option");
+			   opt.value = numBloc;
+			   opt.innerHTML = numBloc; // whatever property it has
+	
+			   // then append it to the select element
+			   blocSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numBloc = blocSelect.options[blocSelect.selectedIndex].value;
+		   getEtagePerBloc(numIlot, numBloc);
+	}
+
+	var villaSelect = document.getElementById('selectVilla');
+	function populateSelectVilla(numIlot, arrayVilla) {
+		villaSelect.innerHTML = "";
+		console.log("from method villa");
+		index=0;
+		for(i=0; i < arrayVilla.length; i++){
+			var numVilla = arrayVilla[i];
+			   var opt = document.createElement("option");
+			   opt.value = numVilla;
+			   opt.innerHTML = "N° "+numVilla; // whatever property it has
+	
+			   // then append it to the select element
+			   villaSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numVilla = villaSelect.options[villaSelect.selectedIndex].value;
+		   //getEtagePerBloc(numIlot, numBloc);
+	}
+
+	function getEtagePerBloc(numIlot, numBloc) {
+		var arrayEtage = [];
+		var Ref = database.ref('ilot/'+numIlot+'/bloc/'+numBloc+'/etage');
+		Ref.on('value', function(snapshot) {
+				arrayEtage = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numEtage = childSnapshot.key;
+		  		console.log("etage : "+numEtage);
+		  
+				arrayEtage.push(numEtage);
+				  
+				  });
+	
+		console.log("done etage!");
+		//console.log(arrayEtage);
+		populateSelectEtage(numIlot, numBloc, arrayEtage);
+		
+		});
+
+	}
+
+	var etageSelect = document.getElementById('selectEtage');
+	function populateSelectEtage(numIlot, numBloc, arrayEtage) {
+		etageSelect.innerHTML = "";
+		console.log("from method etage");
+		index=0;
+		for(i=0; i < arrayEtage.length; i++){
+			var numEtage = arrayEtage[i];
+			   var opt = document.createElement("option");
+			   opt.value = numEtage;
+			   opt.innerHTML = numEtage; // whatever property it has
+	
+			   // then append it to the select element
+			   etageSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numEtage = etageSelect.options[etageSelect.selectedIndex].value;
+		   getAptPerEtage(numIlot, numBloc, numEtage);
+	}
+
+	function getAptPerEtage(numIlot, numBloc, numEtage) {
+		console.log("before cleaning apt");
+		var arrayApt = [];
+		var Ref = database.ref('ilot/'+numIlot+'/bloc/'+numBloc+'/etage/'+numEtage+'/appartement');
+		Ref.on('value', function(snapshot) {
+				console.log("begin apt");
+				arrayApt = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numApt = childSnapshot.key;
+		  		console.log("apt : "+numApt);
+		  
+				  arrayApt.push(numApt);
+				  
+				  });
+	
+		console.log("done apt!");
+		console.log("array apt : "+arrayApt);
+		populateSelectApt(numIlot, numBloc, numEtage, arrayApt);
+		
+		});
+
+	}
+
+	var aptSelect = document.getElementById('selectApt');
+	function populateSelectApt(numIlot, numBloc, numEtage, arrayApt) {
+		aptSelect.innerHTML = "";
+		console.log("from method apt");
+		index=0;
+		for(i=0; i < arrayApt.length; i++){
+			var numApt = arrayApt[i];
+			   var opt = document.createElement("option");
+			   opt.value = numApt;
+			   opt.innerHTML = "N° "+numApt; // whatever property it has
+	
+			   // then append it to the select element
+			   aptSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numApt = aptSelect.options[aptSelect.selectedIndex].value;
+		   //getAptPerEtage(numIlot, numBloc, numEtage);
+	}
+</script>
+
+<script>
+	// function addLocataire(){
+
+		$('#user-form').on('submit', function(e){
+				console.log('clicked')
+				e.preventDefault();
+
+		var typeResident = residentSelect.options[residentSelect.selectedIndex].value;
+		var typeLogement = logementSelect.options[logementSelect.selectedIndex].value;
+		var ilot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		var bloc = blocSelect.options[blocSelect.selectedIndex].value;
+		var etage = etageSelect.options[etageSelect.selectedIndex].value;
+		var apt = aptSelect.options[aptSelect.selectedIndex].value;
+		var villa = villaSelect.options[villaSelect.selectedIndex].value;
+
+		var nom = $("#name").val(); 
+		var email = $("#email").val(); 
+		var telephone = $("#telephone").val(); 
+		
+		if(dataCorrect(nom, email, telephone)){
+			console.log("\n\n\nresident : "+typeResident);
+			console.log("logement : "+typeLogement);
+			console.log("ilot: "+ilot);
+			console.log("bloc: "+bloc);
+			console.log("etage: "+etage);
+			console.log("apt: "+apt);
+			console.log("villa: "+villa);
+
+			console.log("\n\nnom: "+nom);
+			console.log("email: "+email);
+			console.log("tel: "+telephone);
+
+
+			if(typeLogement=="villa"){
+				console.log("add to villa");
+				var refVilla = firebase.database().ref('ilot/'+ilot+'/villa/'+villa+'/'+typeResident+'/').push();
+				refVilla.set({
+				nom: nom,
+				email: email,
+				telephone: telephone
+				}).then(function(){
+					alert('User ajouté avec succès!');
+				})
+				.catch(function(error){
+					alert('Impossible d\'ajouter le user');
+				});
+			}
+			else if(typeLogement=="bloc"){
+				console.log("add to bloc");
+				var refBloc = firebase.database().ref('ilot/'+ilot+'/bloc/'+bloc+'/etage/'+etage+'/appartement/'+apt+'/'+typeResident+'/').push();
+				console.log("ref bloc : "+refBloc);
+				refBloc.set({
+				nom: nom,
+				email: email,
+				telephone: telephone
+				})
+				.then(function(){
+					alert('User ajouté avec succès!');
+				})
+				.catch(function(error){
+					alert('Impossible d\'ajouter le user');
+				});
+				
+			}
+
+			//alert("Sous produit ajouté!");
+		}
+		else{
+		console.log("Not correct");
+		}	
+	
+	});
+
+	function dataCorrect(nom, email, telephone){
+		var correct = true;
+		if((nom=="")||(email=="")||(telephone=="")){
+			correct = false;
+			}
+		if(email.match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null){
+			console.log("Email non valide !!");
+			correct = false;
+		}
+		return correct;
+		}
+</script>
+
+</body>
+</html>

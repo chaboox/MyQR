@@ -1,0 +1,347 @@
+<!--<?php
+
+session_start();
+
+if(isset($_SESSION['user']) && $_SESSION['user'] == 'connected'){
+
+}
+else{
+	header('location: ../loc.php');
+}
+
+?>-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Modifier</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/goodlogo.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/alert.css">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/qrcode.min.js"></script>
+<!--===============================================================================================-->
+</head>
+
+<body>
+
+
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" id="user-form">
+				<span class="contact100-form-title">
+					Modifier user
+				</span>
+
+				<!-- Nom -->
+				<div class="wrap-input100 validate-input" data-validate="Nom obligatoire">
+						<span class="label-input100">Nom complet</span>
+						<input class="input100" type="text" id="name" name="name" placeholder="Nom">
+						<span class="focus-input100"></span>
+				</div>
+
+				<!-- Email -->
+				<div class="wrap-input100 validate-input">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" id="email" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+				</div>
+
+				<!-- Adresse -->
+				<div class="wrap-input100 validate-input" >
+						<span class="label-input100">Adresse</span>
+						<input class="input100" type="text" id="address" name="address" placeholder="Adresse">
+						<span class="focus-input100"></span>
+				</div>
+
+				<!-- Groupe Sangin -->
+				<div class="wrap-input100 validate-input" >
+						<span class="label-input100">Groupe sanguin</span>
+						<input class="input100" type="text" id="sang" name="sang" placeholder="Groupe sanguin">
+						<span class="focus-input100"></span>
+				</div>
+
+
+				<!-- Téléphone -->
+
+
+						<div class="wrap-input100 validate-input" >
+								<span class="label-input100">Téléphone</span>
+								<input class="input100" type="text" id="telephone" name="telephone"
+											 placeholder="Numéro de téléphone du user">
+								<span class="focus-input100"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" >
+								<span class="label-input100">User actif</span>
+
+
+							<label class="switch">
+					<input type="checkbox" id ="actif">
+					<span class="slider round"  ></span>
+				</label>
+						</div>
+						<div class="divqr" id="qrcode"></div>
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button type="submit" class="contact100-form-btn">
+							<span>
+								Modifier
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+
+				<span><a href="#" id="deleteSpan" class="contact100-delete-res">Supprimer user</a></span>
+
+
+
+			</form>
+		</div>
+
+        <span id="txtdate" class="contact100-txtdate">Last edit : 14/07/2019<br>Add : 01/06/2019</span>
+
+	</div>
+
+
+
+
+
+	<div id="dropDownSelect1"></div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/firebaseApp.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+
+<script>
+btn_checkbox = document.getElementById('actif')
+
+var nom;
+var telephone;
+var email;
+var sang;
+var address;
+
+var key;
+
+var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(1);
+	var queries = queryString.split("&");
+
+
+
+
+
+	/*if(logementThis=="bloc"){
+		divbloc.style.display = "block";
+		divvilla.style.display = "none";
+	}
+
+	if(logementThis=="villa"){
+		divvilla.style.display = "block";
+		divbloc.style.display = "none";
+	}*/
+</script>
+
+
+
+<script>
+
+	var cpt = 0;
+
+	var database = firebase.database();
+
+	getArgumentsAndPopulate();
+
+	function getArgumentsAndPopulate(){
+		//cpt++;
+
+		var queryString = decodeURIComponent(window.location.search);
+		queryString = queryString.substring(1);
+		var queries = queryString.split("&");
+
+		key = queries[0].replace("key=", "");
+		nom = queries[1].replace("nom=", "");
+		telephone = queries[2].replace("telephone=", "");
+		email = queries[3].replace("email=", "");
+		sang = queries[4].replace("sang=", "");
+		address = queries[5].replace("address=", "");
+		actif = queries[6].replace("actif=", "");
+
+		if(actif == 'true') btn_checkbox.click()
+
+		var nomET = document.getElementById("name");
+		var emailET = document.getElementById("email");
+		var telET = document.getElementById("telephone");
+		var sangET = document.getElementById("sang");
+		var addressET = document.getElementById("address");
+		nomET.value = nom;
+		emailET.value = email;
+		telET.value = telephone;
+		sangET.value = sang;
+		addressET.value = address;
+
+		  new QRCode(document.getElementById("qrcode"), key);
+
+	}
+
+</script>
+
+
+
+
+<script>
+	// function addLocataire(){
+
+	$('#user-form').on('submit', function(e){
+		e.preventDefault();
+		console.log('clicked');
+		var nom = $("#name").val();
+		var email = $("#email").val();
+		var telephone = $("#telephone").val();
+		var sang = $("#sang").val();
+		var address = $("#address").val();
+			console.log("\nkey 2 ::: "+key);
+			var actif = btn_checkbox.checked;
+		editUser(nom, email,telephone, sang, address, actif)
+
+	});
+
+	$('#deleteSpan').click( function(e){
+		e.preventDefault();
+		var queryString = decodeURIComponent(window.location.search);
+		queryString = queryString.substring(1);
+		var queries = queryString.split("&");
+		key = queries[0].replace("key=", "");
+		console.log("\nkey ::: "+key);
+
+  		var r = confirm("Ce user sera définitivement supprimé !");
+  		if (r == true) {
+			var refRes = firebase.database().ref('users/'+key);
+			refRes.remove();
+			window.location = '../loc.html'
+		}
+
+		return false;
+	});
+
+
+
+
+
+		function editUser(nom, email, telephone, sang, address, actif){
+				var user = firebase.database().ref('users/'+key);
+				user.update({
+				nom: nom,
+				email: email,
+        telephone: telephone.replace(" ", ""),
+				sang: sang,
+				address: address,
+			  lastedit: getDateTime(),
+				actif: actif
+				}).then(function(){
+					alert('User modifié avec succès!');
+					window.location = '../loc.html'
+				})
+				.catch(function(error){
+					alert('Impossible de modifier le user');
+				});
+		}
+
+
+    function getDateTime() {
+        var now     = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1;
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        //var second  = now.getSeconds();
+        if(month.toString().length == 1) {
+            month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+            day = '0'+day;
+        }
+        if(hour.toString().length == 1) {
+            hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+            minute = '0'+minute;
+        }
+        /*if(second.toString().length == 1) {
+             second = '0'+second;
+        } */
+        var dateTime = day+'/'+month+'/'+year+' '+hour+':'+minute;
+        return dateTime;
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

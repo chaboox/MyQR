@@ -1,0 +1,1130 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['user']) && $_SESSION['user'] == 'connected'){
+	
+}
+else{
+	header('location: ../loc.php');
+}
+
+?>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Modifier</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/goodlogo.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+
+<body>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" id="user-form">
+				<span class="contact100-form-title">
+					Modifier user
+				</span>
+
+				<div class="animation_contenaire">
+                    <div class="loaderSpin" id="loader"></div>
+                </div>
+				
+
+				<!-- Nom -->
+				<div class="wrap-input100 validate-input" data-validate="Nom obligatoire">
+					<span class="label-input100">Nom complet</span>
+					<input class="input100" type="text" id="name" name="name" placeholder="Nom du locataire">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Email -->
+				<div class="wrap-input100 validate-input" data-validate = "Email valide obligatoire: ex@abc.xyz">
+					<span class="label-input100">Email</span>
+					<input class="input100" type="text" id="email" name="email" placeholder="Email du locataire">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Téléphone -->
+				<div class="wrap-input100 validate-input" data-validate = "Téléphone valide obligatoire">
+						<span class="label-input100">Téléphone</span>
+						<input class="input100" type="text" id="telephone" name="telephone" placeholder="Numéro de téléphone du locataire">
+						<span class="focus-input100"></span>
+				</div>
+
+				<!-- Type User / Type Logement --> 
+				<div class="wrap-input100 input100-select" id="Type_User_Type_Logement" style="display: flex; border-bottom: none;">
+					<div class="Type_User" style="width: 48%; border-bottom: 2px solid #d9d9d9;">
+						<span class="label-input100">Type</span>
+						<div>
+							<select id="selectResident" class="selection-2" name="budget">
+								<option value="proprio">Propriétaire</option>
+								<option value="locataire">Locataire</option>
+							</select>
+						</div>
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="Type_Logement" style="margin-left:2%; width: 48%; border-bottom: 2px solid #d9d9d9;">
+						<span class="label-input100">Logement</span>
+						<div>
+							<select id="selectLogement" class="selection-2" name="service">
+								<option value="bloc">Bloc</option>
+								<option value="villa">Villa</option>
+							</select>
+						</div>
+						<span class="focus-input100"></span>
+					</div>
+						
+				</div>
+
+			
+
+				<!-- Ilot -->
+				<div class="wrap-input100 input100-select" id="div_ilot">
+					<span class="label-input100">Ilot</span>
+					<div>
+						<select id="selectIlot" class="selection-2" name="service">
+							<!--<option>N° 1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- DIV BLOC -->
+				<div id="div_bloc" class="divbloc">
+
+				<!-- Bloc -->
+				<div class="wrap-input100 input100-select" id="Bloc_div">
+					<span class="label-input100">Bloc</span>
+					<div>
+						<select id="selectBloc" class="selection-2" name="budget">
+							<!--<option>A</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Etage -->
+				<div selectBloc class="wrap-input100 input100-select" id="Etage_div">
+					<span class="label-input100">Etage</span>
+					<div>
+						<select id="selectEtage" class="selection-2" name="budget">
+							<!--<option>1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- Apt -->
+				<div class="wrap-input100 input100-select" id="Apt_div" >
+					<span class="label-input100">Appartement</span>
+					<div>
+						<select id="selectApt" class="selection-2" name="budget">
+							<!--<option>1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				</div>
+				<!-- END DIV BLOC -->
+
+
+
+				<!-- DIV VILLA -->
+				<div id="div_villa" class="divvilla">
+
+				<!-- Villa -->
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Villa</span>
+					<div>
+						<select id="selectVilla" class="selection-2" name="budget">
+							<!--<option>N° 1</option>-->
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				</div>
+				<!-- END DIV VILLA -->
+				
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button type="submit" class="contact100-form-btn">
+							<span>
+								Modifier
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+
+				<span><a href="#" id="deleteSpan" class="contact100-delete-res">Supprimer user</a></span>
+			
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-database.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD8S3UbfAQdo-4_JZDIa6QOffy6xgcoseQ",
+    authDomain: "giryad-c0e72.firebaseapp.com",
+    databaseURL: "https://giryad-c0e72.firebaseio.com",
+    projectId: "giryad-c0e72",
+    storageBucket: "giryad-c0e72.appspot.com",
+    messagingSenderId: "870451114024"
+  };
+	firebase.initializeApp(config);
+	
+	//sign in anon
+</script>
+
+<script>
+
+
+var nom;
+var telephone;
+var telephoneG;
+var email;
+var ilot;
+var bloc;
+var etage;
+var apt;
+var villa;
+var type;
+var logement;
+
+
+
+var key;
+var cpt = 0;
+divbloc = document.getElementById('div_bloc');
+divvilla = document.getElementById('div_villa');
+var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(1);
+	var queries = queryString.split("&");
+	var logementThis = queries[10].replace("logement=", "");
+	console.log("DEBUT BOY - Logement: "+logementThis);
+	logement = logementThis;
+	
+
+	/*if(logementThis=="bloc"){
+		divbloc.style.display = "block";
+		divvilla.style.display = "none";
+	}
+	
+	if(logementThis=="villa"){
+		divvilla.style.display = "block";
+		divbloc.style.display = "none";
+	}*/
+</script>
+
+<script>
+// ----- SELECTOR ONCHANGE SCRIPT ----- \\
+
+//Select Type Logement
+$("#selectLogement").change(function(){
+		//alert('Selected value: ' + $(this).val());
+		var logement = $(this).val();
+		console.log("on change logement ;; "+logement);
+		
+		if(logement == 'bloc'){
+			divbloc.style.visibility = "visible";
+			divvilla.style.visibility = "hidden";
+		}
+		else if(logement == 'villa'){
+			divvilla.style.visibility = "visible";
+			divbloc.style.visibility = "hidden";
+		}
+
+		});
+
+//Select Ilot
+$("#selectIlot").change(function(){
+		//alert('Selected value: ' + $(this).val());
+		var numIlot = $(this).val();
+		console.log("on change ilot ::: "+numIlot);
+
+		document.getElementById("loader").style.display = "block";
+
+		
+		getVillaPerIlot(numIlot);
+		getBlocPerIlot(numIlot);
+
+		});
+
+//Select Bloc
+$("#selectBloc").change(function(){
+		console.log('\n\nSelected value: ' + $(this).val());
+		var numBloc = $(this).val();
+		console.log(numBloc);
+
+		
+		var ilotSelect = document.getElementById('selectIlot');
+		var numIlot = ilotSelect.options[ilotSelect.selectedIndex].value;
+
+		document.getElementById("loader").style.display = "block";
+
+		getEtagePerBloc(numIlot, numBloc);
+
+		});
+
+//Select Etage
+$("#selectEtage").change(function(){
+		console.log('\n\nSelected value Etage: ' + $(this).val());
+		var numEtage = $(this).val();
+		console.log(numEtage);
+
+		
+		var ilotSelect = document.getElementById('selectIlot');
+		var numIlot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		
+		var blocSelect = document.getElementById('selectBloc');
+		var numBloc = blocSelect.options[blocSelect.selectedIndex].value;
+		console.log('\nSelected value bloc: ' + numBloc);
+
+		document.getElementById("loader").style.display = "block";
+
+		getAptPerEtage(numIlot, numBloc, numEtage);
+
+		});
+</script>
+
+<script>
+
+	var cpt = 0;
+
+	var database = firebase.database();
+
+	
+	var Ref = database.ref('ilot');
+	
+	console.log("before cleaning ilot");
+	var arrayIlot = [];
+	Ref.on('value', function(snapshot) {
+		arrayIlot = [];
+		snapshot.forEach(function(childSnapshot) {
+		
+		var numIlot = childSnapshot.key;
+		console.log("num ilot: "+numIlot);
+		  
+		arrayIlot.push(numIlot);
+	
+		});
+	
+		console.log("done ilot!");
+		//console.log("array ilot : "+arrayIlot);
+		//document.getElementById("loader").style.display = "none";
+		document.getElementById("loader").style.display = "none";
+	
+	
+	});
+	
+
+	var residentSelect = document.getElementById('selectResident');
+	var logementSelect = document.getElementById('selectLogement');
+
+
+	var ilotSelect = document.getElementById('selectIlot');
+	function populateIlot(arrayIlot) {
+		ilotSelect.innerHTML = "";
+		console.log("from method ilot");
+		index=0;
+		for(i=0; i < arrayIlot.length; i++){
+			var numIlot = arrayIlot[i];
+			   var opt = document.createElement("option");
+			   opt.value = numIlot;
+			   opt.innerHTML = "N° "+numIlot; // whatever property it has
+	
+			   // then append it to the select element
+			   ilotSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numIlot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		   console.log("selected ilot now : "+numIlot);
+		   getVillaPerIlot(numIlot);
+		   getBlocPerIlot(numIlot);
+		   
+	}
+
+	function getBlocPerIlot(numIlot) {
+		console.log("searching for blocs...");
+		var arrayBloc = [];
+		var Ref = database.ref('ilot/'+numIlot+'/bloc');
+		Ref.on('value', function(snapshot) {
+			if(snapshot.exists()){
+				arrayBloc = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numBloc = childSnapshot.key;
+		  		console.log("bloc : "+numBloc);
+		  
+				arrayBloc.push(numBloc);
+				  
+				  });
+	
+				console.log("done bloc!");
+				populateSelectBloc(numIlot, arrayBloc);
+			
+			}	
+			else{
+				console.log("bloc null...");
+				blocSelect.innerHTML = "";
+				etageSelect.innerHTML = "";
+				aptSelect.innerHTML = "";
+			}
+		
+		});
+
+	}
+
+	function getVillaPerIlot(numIlot) {
+		console.log("searching for villas...");
+		var arrayVilla = [];
+		var Ref = database.ref('ilot/'+numIlot+'/villa');
+		Ref.on('value', function(snapshot) {
+			if(snapshot.exists()){
+				arrayVilla = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numVilla = childSnapshot.key;
+		  		console.log("found villa :: "+numVilla);
+		  
+				  arrayVilla.push(numVilla);
+				  
+				  });
+	
+				console.log("done villa!");
+				populateSelectVilla(numIlot, arrayVilla);
+			}
+			else{
+				console.log("villa doesn't exist!");
+				villaSelect.innerHTML = "";
+			}
+		
+		
+		});
+
+	}
+
+
+	var blocSelect = document.getElementById('selectBloc');
+	function populateSelectBloc(numIlot, arrayBloc) {
+		blocSelect.innerHTML = "";
+		console.log("from method bloc");
+		index=0;
+		for(i=0; i < arrayBloc.length; i++){
+			var numBloc = arrayBloc[i];
+			   var opt = document.createElement("option");
+			   opt.value = numBloc;
+			   opt.innerHTML = numBloc; // whatever property it has
+	
+			   // then append it to the select element
+			   blocSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numBloc = blocSelect.options[blocSelect.selectedIndex].value;
+		   console.log("selected bloc now : "+numBloc);
+		   getEtagePerBloc(numIlot, numBloc);
+	}
+
+	var villaSelect = document.getElementById('selectVilla');
+	function populateSelectVilla(numIlot, arrayVilla) {
+		document.getElementById("loader").style.visibility = "hidden";
+		villaSelect.innerHTML = "";
+		console.log("from method villa");
+		index=0;
+		for(i=0; i < arrayVilla.length; i++){
+			var numVilla = arrayVilla[i];
+			   var opt = document.createElement("option");
+			   opt.value = numVilla;
+			   opt.innerHTML = "N° "+numVilla; // whatever property it has
+	
+			   // then append it to the select element
+			   villaSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numVilla = villaSelect.options[villaSelect.selectedIndex].value;
+		   console.log("selected villa now : "+numVilla);
+		   //getEtagePerBloc(numIlot, numBloc);
+		   console.log("cpt : "+cpt);
+		   if(cpt==0){
+			populateTypeLogement();
+			getArgumentsAndPopulate();
+		   }
+	}
+
+	function getEtagePerBloc(numIlot, numBloc) {
+		var arrayEtage = [];
+		var Ref = database.ref('ilot/'+numIlot+'/bloc/'+numBloc+'/etage');
+		Ref.on('value', function(snapshot) {
+			if(snapshot.exists()){
+				arrayEtage = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numEtage = childSnapshot.key;
+		  		console.log("etage : "+numEtage);
+		  
+				arrayEtage.push(numEtage);
+				  
+				  });
+	
+				console.log("done etage!");
+				//console.log(arrayEtage);
+				populateSelectEtage(numIlot, numBloc, arrayEtage);
+			}	
+		
+		});
+
+	}
+
+	var etageSelect = document.getElementById('selectEtage');
+	function populateSelectEtage(numIlot, numBloc, arrayEtage) {
+		etageSelect.innerHTML = "";
+		console.log("from method etage");
+		index=0;
+		for(i=0; i < arrayEtage.length; i++){
+			var numEtage = arrayEtage[i];
+			   var opt = document.createElement("option");
+			   opt.value = numEtage;
+			   opt.innerHTML = numEtage; // whatever property it has
+	
+			   // then append it to the select element
+			   etageSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numEtage = etageSelect.options[etageSelect.selectedIndex].value;
+		   console.log("selected etage now : "+numEtage);
+		   getAptPerEtage(numIlot, numBloc, numEtage);
+	}
+
+	function getAptPerEtage(numIlot, numBloc, numEtage) {
+		console.log("before cleaning apt");
+		var arrayApt = [];
+		var Ref = database.ref('ilot/'+numIlot+'/bloc/'+numBloc+'/etage/'+numEtage+'/appartement');
+		Ref.on('value', function(snapshot) {
+			if(snapshot.exists()){
+				console.log("begin apt");
+				arrayApt = [];
+				snapshot.forEach(function(childSnapshot) {
+				var numApt = childSnapshot.key;
+		  		console.log("apt : "+numApt);
+		  
+				  arrayApt.push(numApt);
+				  
+				  });
+	
+				console.log("done apt!");
+				console.log("array apt : "+arrayApt);
+				populateSelectApt(numIlot, numBloc, numEtage, arrayApt);
+			}
+		
+		});
+
+	}
+
+	var aptSelect = document.getElementById('selectApt');
+	function populateSelectApt(numIlot, numBloc, numEtage, arrayApt) {
+		document.getElementById("loader").style.display = "none";
+		aptSelect.innerHTML = "";
+		console.log("from method apt");
+		index=0;
+		for(i=0; i < arrayApt.length; i++){
+			var numApt = arrayApt[i];
+			   var opt = document.createElement("option");
+			   opt.value = numApt;
+			   opt.innerHTML = "N° "+numApt; // whatever property it has
+	
+			   // then append it to the select element
+			   aptSelect.appendChild(opt);
+			   index++;
+		   }
+
+		   var numApt = aptSelect.options[aptSelect.selectedIndex].value;
+		   console.log("selected apt now : "+numApt)
+		   
+		   if(cpt==0){
+				populateTypeLogement();
+				getArgumentsAndPopulate();
+		   }
+		   
+		   
+	}
+</script>
+
+<script>
+
+function populateTypeLogement(){
+	var typeSelect = document.getElementById('selectResident');
+	typeSelect.innerHTML = "";
+	var opt1 = document.createElement("option");
+	opt1.value = "locataire";
+	opt1.innerHTML = "Locataire";
+
+	var opt2 = document.createElement("option");
+	opt2.value = "proprio";
+	opt2.innerHTML = "Propriétaire";
+
+	typeSelect.appendChild(opt1);
+	typeSelect.appendChild(opt2);
+
+	var logementSelect = document.getElementById('selectLogement');
+	logementSelect.innerHTML = "";
+	var opt1 = document.createElement("option");
+	opt1.value = "bloc";
+	opt1.innerHTML = "Bloc";
+
+	var opt2 = document.createElement("option");
+	opt2.value = "villa";
+	opt2.innerHTML = "Villa";
+
+	logementSelect.appendChild(opt1);
+	logementSelect.appendChild(opt2);
+
+	$("#selectLogement").val(logement).change();
+	
+}
+
+function getArgumentsAndPopulate(){
+	cpt++;
+
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(1);
+	var queries = queryString.split("&");
+	
+	key = queries[0].replace("key=", "");
+	nom = queries[1].replace("nom=", "");
+	telephone = queries[2].replace("telephone=", "");
+	telephoneG = queries[2].replace("telephone=", "");
+	email = queries[3].replace("email=", "");
+	ilot = queries[4].replace("ilot=", "");
+	bloc = queries[5].replace("bloc=", "");
+	etage = queries[6].replace("etage=", "");
+	apt = queries[7].replace("apt=", "");
+	villa = queries[8].replace("villa=", "");
+	type = queries[9].replace("type=", "");
+	logement = queries[10].replace("logement=", "");
+	
+	var nomET = document.getElementById("name");
+	var emailET = document.getElementById("email");
+	var telET = document.getElementById("telephone");
+	nomET.value = nom;
+	emailET.value = email;
+	telET.value = telephone;
+
+	var residentSel = document.getElementById("selectResident");
+	residentSel.value = type;
+
+	var logementSel = document.getElementById("selectLogement");
+	logementSel.value = logement;
+
+	var ilotSel = document.getElementById("selectIlot");
+	$("#selectIlot").val(ilot).change();
+	//ilotSel.value = ilot;
+
+	if(logement=="bloc"){
+		var blocSel = document.getElementById("selectBloc");
+		$("#selectBloc").val(bloc).change();
+		//blocSel.value = bloc;
+		//blocSel.innerHTML = "";
+
+		var etageSel = document.getElementById("selectEtage");
+		$("#selectEtage").val(etage).change();
+		//etageSel.value = etage;
+		//etageSel.innerHTML = "";
+
+		var aptSel = document.getElementById("selectApt");
+		//$("#selectApt").val(apt).change();
+		aptSel.value = apt;
+		//aptSel.innerHTML = "";
+
+	}
+	
+	if(logement=="villa"){
+		var villaSel = document.getElementById("selectVilla");
+		console.log("in villa man -- "+villa);
+		//$("#selectVilla").val(villa).change();
+		villaSel.value = villa;
+		//villaSel.innerHTML = "";
+	}
+
+	
+
+	console.log("key : "+key);
+	console.log("nom : "+nom);
+	console.log("tel : "+telephone);
+	console.log("email : "+email);
+	console.log("ilot : "+ilot);
+	console.log("bloc : "+bloc);
+	console.log("etage : "+etage);
+	console.log("apt : "+apt);
+	console.log("villa : "+villa);
+	console.log("type : "+type);
+	console.log("logement : "+logement);
+}
+</script>
+
+<script>
+	// function addLocataire(){
+
+	$('#user-form').on('submit', function(e){
+		e.preventDefault();
+		console.log('clicked');
+
+		/*var typeResident = type;
+		var typeLogement = logement;
+		var ilotThis = ilot;
+		var blocThis = bloc;
+		var etageThis = etage;
+		var aptThis = apt;
+		var villaThis = villa;*/
+
+		var typeResident = residentSelect.options[residentSelect.selectedIndex].value;
+		var typeLogement = logementSelect.options[logementSelect.selectedIndex].value;
+		var ilot = ilotSelect.options[ilotSelect.selectedIndex].value;
+		var bloc = getTxt(blocSelect.options[blocSelect.selectedIndex]);
+		var etage = getTxt(etageSelect.options[etageSelect.selectedIndex]);
+		var apt = getTxt(aptSelect.options[aptSelect.selectedIndex]);
+		var villa = getTxt(villaSelect.options[villaSelect.selectedIndex]);
+
+		var nom = $("#name").val(); 
+		var email = $("#email").val(); 
+		var telephone = $("#telephone").val(); 
+		
+		if(dataCorrect(nom, email, telephone)){
+			console.log("\n\n\nresident : "+typeResident);
+			console.log("logement : "+typeLogement);
+			console.log("ilot: "+ilot);
+			console.log("bloc: "+bloc);
+			console.log("etage: "+etage);
+			console.log("apt: "+apt);
+			console.log("villa: "+villa);
+
+			console.log("\n\nnom: "+nom);
+			console.log("email: "+email);
+			console.log("tel: "+telephone);
+
+
+			if(typeLogement=="villa"){
+				if(dataVillaCorrect(villa)){
+				console.log("edit villa"); //here.....
+
+				if(telephone != telephoneG){
+					console.log("diff nums"); 
+
+					//------------------------- Test if resident exists or not -------------------------
+						var cptExists = 0;
+
+						var telEx;
+						var nomEx;
+						var typeLogEx;
+						var ilotEx;
+						var villaEx;
+						var blocEx;
+						var etageEx;
+						var aptEx;
+
+						var exists = false;
+						var Ref = database.ref('resident');
+						Ref.once('value').then(function(snapshot) {
+						if(snapshot.exists()){
+						snapshot.forEach(function(childSnapshot) {
+						var keyRes = childSnapshot.key;
+						var telRes = childSnapshot.child("telephone").val().toString();
+						var nomRes = childSnapshot.child("nom").val().toString();
+						var typeLogRes = childSnapshot.child("logement").val().toString();
+						var ilotRes = childSnapshot.child("ilot").val().toString();
+						var villaRes = childSnapshot.child("villa").val().toString();
+						var blocRes = childSnapshot.child("bloc").val().toString();
+						var etageRes = childSnapshot.child("etage").val().toString();
+						var aptRes = childSnapshot.child("apt").val().toString();
+
+				  	console.log("key res : "+keyRes);
+						console.log("tel res : "+telRes);
+						
+				  	if(telRes == telephone){
+							cptExists++;
+							exists = true;
+							nomEx = nomRes;
+							telEx = telRes;
+							ilotEx = ilotRes;
+							typeLogEx = typeLogRes;
+							if(typeLogRes == "villa"){
+								villaEx = villaRes;
+							}
+							else{
+								blocEx = blocRes;
+								etageEx = etageRes;
+								aptEx = aptRes;
+							}
+
+						}
+						
+				  	});
+	
+						if(exists){ //exists
+							console.log("resident exists already");
+							var restxt = getResCorrTxt(cptExists);
+							var extxt = getExCorrTxt(cptExists);
+
+							var r;
+							if(typeLogEx == "villa"){
+								r = confirm(cptExists+ " " + restxt + " avec le même numéro de téléphone "+ extxt +" déjà.\n\nNom : "+nomEx+"\nTéléphone : "+telEx+"\nIlot : "
+								+ilotEx+"\nVilla : "+villaEx+"\n\nModifier quand même?");
+							}
+							else{
+								r = confirm(cptExists+ " " + restxt + " avec le même numéro de téléphone "+ extxt +" déjà.\n\nNom : "+nomEx+"\nTéléphone : "+telEx+"\nIlot : "+ilotEx+"\nBloc : "+blocEx+"\nEtage : "+etageEx+
+								"\nApt : "+aptEx+ "\n\nModifier quand même?");
+							}
+  						if (r == true) {
+							console.log("on le modifie quand même alors...")
+							editResidentDBVilla(nom, email, telephone, ilot, villa, typeResident, typeLogement);
+						} 
+
+
+						}
+						else{ //doesn't exist
+							console.log("resident doesn't exist");
+							editResidentDBVilla(nom, email, telephone, ilot, villa, typeResident, typeLogement);
+						}
+						
+					
+					}
+					});
+
+					//------------------------- Test if resident exists or not -------------------------
+				}
+				else{
+					console.log("same nums");
+					editResidentDBVilla(nom, email, telephone, ilot, villa, typeResident, typeLogement);
+				}
+
+				}
+				else{
+					alert("Champ vide");
+				}
+				
+			}
+			else if(typeLogement=="bloc"){
+				if(dataBlocCorrect(bloc, etage, apt)){
+				console.log("edit bloc");
+
+				if(telephone != telephoneG){
+					console.log("diff nums"); 
+
+					//------------------------- Test if resident exists or not -------------------------
+						var cptExists = 0;
+
+						var telEx;
+						var nomEx;
+						var typeLogEx;
+						var ilotEx;
+						var villaEx;
+						var blocEx;
+						var etageEx;
+						var aptEx;
+
+						var exists = false;
+						var Ref = database.ref('resident');
+						Ref.once('value').then(function(snapshot) {
+						if(snapshot.exists()){
+						snapshot.forEach(function(childSnapshot) {
+						var keyRes = childSnapshot.key;
+						var telRes = childSnapshot.child("telephone").val().toString();
+						var nomRes = childSnapshot.child("nom").val().toString();
+						var typeLogRes = childSnapshot.child("logement").val().toString();
+						var ilotRes = childSnapshot.child("ilot").val().toString();
+						var villaRes = childSnapshot.child("villa").val().toString();
+						var blocRes = childSnapshot.child("bloc").val().toString();
+						var etageRes = childSnapshot.child("etage").val().toString();
+						var aptRes = childSnapshot.child("apt").val().toString();
+
+				  	console.log("key res : "+keyRes);
+						console.log("tel res : "+telRes);
+						
+				  	if(telRes == telephone){
+							cptExists++;
+							exists = true;
+							nomEx = nomRes;
+							telEx = telRes;
+							ilotEx = ilotRes;
+							typeLogEx = typeLogRes;
+							if(typeLogRes == "villa"){
+								villaEx = villaRes;
+							}
+							else{
+								blocEx = blocRes;
+								etageEx = etageRes;
+								aptEx = aptRes;
+							}
+
+						}
+						
+				  	});
+	
+						if(exists){ //exists
+							console.log("resident exists already");
+							var restxt = getResCorrTxt(cptExists);
+							var extxt = getExCorrTxt(cptExists);
+
+							var r;
+							if(typeLogEx == "villa"){
+								r = confirm(cptExists+ " " + restxt + " avec le même numéro de téléphone "+ extxt +" déjà.\n\nNom : "+nomEx+"\nTéléphone : "+telEx+"\nIlot : "
+								+ilotEx+"\nVilla : "+villaEx+"\n\nModifier quand même?");
+							}
+							else{
+								r = confirm(cptExists+ " " + restxt + " avec le même numéro de téléphone "+ extxt +" déjà.\n\nNom : "+nomEx+"\nTéléphone : "+telEx+"\nIlot : "+ilotEx+"\nBloc : "+blocEx+"\nEtage : "+etageEx+
+								"\nApt : "+aptEx+ "\n\nModifier quand même?");
+							}
+  						if (r == true) {
+							console.log("on le modifie quand même alors...")
+							editResidentDBBloc(nom, email, telephone, ilot, bloc, etage, apt, typeResident, typeLogement);
+						} 
+
+
+						}
+						else{ //doesn't exist
+							console.log("resident doesn't exist");
+							editResidentDBBloc(nom, email, telephone, ilot, bloc, etage, apt, typeResident, typeLogement);
+						}
+						
+					
+					}
+					});
+
+					//------------------------- Test if resident exists or not -------------------------
+				}
+				else{
+					console.log("same nums");
+					editResidentDBBloc(nom, email, telephone, ilot, bloc, etage, apt, typeResident, typeLogement);	
+				}
+				
+				}
+				else{
+					alert("Champ vide");
+				}
+		
+			}
+				
+
+			//alert("Sous produit ajouté!");
+		}
+		else{
+		console.log("Not correct");
+		}
+	
+	});
+
+	$('#deleteSpan').click( function(e){
+		e.preventDefault(); 
+		var queryString = decodeURIComponent(window.location.search);
+		queryString = queryString.substring(1);
+		var queries = queryString.split("&");
+		key = queries[0].replace("key=", "");
+		console.log("\nkey ::: "+key);
+
+  		var r = confirm("Ce user sera définitivement supprimé !");
+  		if (r == true) {
+			var refRes = firebase.database().ref('resident/'+key);
+			refRes.remove();
+			window.open("edit.php","_self")
+		} 		
+		
+		return false; 
+	});
+
+
+	function dataCorrect(nom, email, telephone){
+		var correct = true;
+		if((nom=="")||(email=="")||(telephone=="")){
+			correct = false;
+			}
+		if(email.match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null){
+			console.log("Email non valide !!");
+			correct = false;
+		}
+		if((telephone.match(/\d/g) == null)){
+			console.log("Phone non valide, vide !!");
+			correct = false;
+		}
+		else{
+			if(!(telephone.match(/\d/g).length === 10)){
+				console.log("phone wrong length");
+				correct = false;
+			}
+			
+		}
+
+		return correct;
+		}
+
+		function dataBlocCorrect(bloc, etage, apt){
+		var correct = true;
+		if((bloc=="")||(etage=="")||(apt=="")){
+			correct = false;
+			}
+		return correct;
+		}
+
+
+
+		function dataVillaCorrect(villa){
+		var correct = true;
+		if((villa=="")){
+			correct = false;
+			}
+		return correct;
+		}
+
+		function getTxt(txt){
+			if(typeof txt !== 'undefined'){
+				return txt.value;
+			}
+			else{
+				return "";
+			}
+		}
+
+		function getResCorrTxt(cpt){
+			var txt ;
+			if(cpt>1){
+				txt = "users";
+			}
+			else{
+				txt = "user";
+			}
+			return txt;
+		}
+
+		function getExCorrTxt(cpt){
+			var txt ;
+			if(cpt>1){
+				txt = "existent";
+			}
+			else{
+				txt = "existe";
+			}
+			return txt;
+		}
+
+		function editResidentDBBloc(nom, email, telephone, ilot, bloc, etage, apt, typeResident, typeLogement){
+				var refBloc = firebase.database().ref('resident/'+key);
+				//console.log("ref bloc : "+refBloc);
+				refBloc.set({
+				nom: nom,
+				email: email,
+				telephone: telephone,
+				ilot: ilot,
+				bloc: bloc,
+				etage: etage,
+				apt: apt,
+				villa: "/",
+				type: typeResident,
+				logement: typeLogement
+				})
+				.then(function(){
+					alert('User modifié avec succès!');
+					telephoneG = telephone;
+				})
+				.catch(function(error){
+					alert('Impossible de modifier le user');
+				});
+		}
+
+		function editResidentDBVilla(nom, email, telephone, ilot, villa, typeResident, typeLogement){
+				var refVilla = firebase.database().ref('resident/'+key);
+				refVilla.set({
+				nom: nom,
+				email: email,
+				telephone: telephone,
+				ilot: ilot,
+				bloc: "/",
+				etage: "/",
+				apt: "/",
+				villa: villa,
+				type: typeResident,
+				logement: typeLogement
+				}).then(function(){
+					alert('User modifié avec succès!');
+					telephoneG = telephone;
+				})
+				.catch(function(error){
+					alert('Impossible de modifier le user');
+				});
+		}
+
+</script>
+
+</body>
+</html>

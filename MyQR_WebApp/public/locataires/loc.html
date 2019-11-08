@@ -1,0 +1,571 @@
+<!--<?php
+session_start();
+
+
+if(isset($_POST['action'])){
+	if($_POST['action'] == 'GIRYAD001'){
+		$response = 1;
+		$_SESSION['user'] = 'connected';
+	}
+	else{
+		$response = 0;
+	}
+	echo json_encode($response);
+	exit();
+}
+
+if($_SESSION['user'] != 'connected'){
+	header('location: ../index.php');
+}
+// Encoding array in JSON format
+
+
+//exit();
+
+
+?>-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Locataires</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/goodlogo.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/main2.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrapheader.css">
+	<link rel="stylesheet" href="css/mainheader.css">
+<!--===============================================================================================-->
+
+
+
+</head>
+<body>
+
+
+<!-- #header -->
+<header id="header">
+		    <div class="container main-menu">
+		    	<div class="row align-items-center justify-content-between d-flex">
+			      <div id="logo">
+
+			      </div>
+			      <nav id="nav-menu-container">
+			        <ul class="nav-menu">
+			          <li><a href="add/add.html">Ajouter un user</a></li>
+			          <li><a href="#" onclick="generateExcel()">Exporter le tableau</a></li>
+			          <li><a href="#" id="logoutBtn" >Se déconnecter</a></li>
+			        </ul>
+			      </nav><!-- #nav-menu-container -->
+		    	</div>
+		    </div>
+		  </header>
+<!-- #header -->
+
+	<div class="limiter">
+		<!-- SEARCH-->
+
+		<div class="contenaire_form">
+			<form>
+				<div class="inner-form">
+				  <div class="input-field first-wrap">
+						<div class="input-select">
+						  <select id="selectSearch" data-trigger="" name="choices-single-defaul">
+							<option placeholder="">Catégorie</option>
+							<option value="nom">Nom</option>
+							<option value="telephone">Numéro de Tél</option>
+							<option value="email">Email</option>
+						  </select>
+						</div>
+					  </div>
+					  <div class="input-field second-wrap">
+						<input id="search" type="text" placeholder="Tapez votre recherche" />
+					  </div>
+					  <div class="input-field third-wrap">
+						<button class="btn-search" type="button" onclick="searchResident()">
+						  <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+							<path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+						  </svg>
+						</button>
+					  </div>
+					</div>
+				  </form>
+		</div>
+		<!-- END SEARCH -->
+
+
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Nom complet</th>
+									<th class="cell100 column2">Téléphone</th>
+									<th class="cell100 column3">Email</th>
+									<th class="cell100 column4">G.Sanguin</th>
+									<th class="cell100 column5">Adresse</th>
+									<th class="cell100 column6">code</th>
+										<th class="cell100 column7">actif</th>
+
+
+
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="table100-body js-pscroll">
+						<table id="bigtable">
+							<tbody id="tbody">
+
+								<!-- <tr id="tr" class="row100 body">
+									<td class="cell100 column1"><a href="">Hanane Marouf</a></td>
+									<td class="cell100 column2">+213668065998</td>
+									<td class="cell100 column3">hanane.marouf@groupe-hasnaoui.com</td>
+									<td class="cell100 column4">45</td>
+									<td class="cell100 column5">B</td>
+									<td class="cell100 column6">1</td>
+									<td class="cell100 column7">5</td>
+									<td class="cell100 column8">2</td>
+									<td class="cell100 column9">Propriétaire</td>	 -->
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-auth.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+
+
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/firebaseApp.js"></script>
+	<script src="js/xlsx.full.min.js"></script>
+	<script src="js/FileSaver.min.js"></script>
+	<script src="js/extention/choices.js"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+		</script>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase-database.js"></script>
+
+<script>
+  // Initialize Firebase
+	const config = {
+apiKey: "AIzaSyBrY3c3UAaP2y1bjlbSOIRd_Zs8686WpPs",
+authDomain: "myqr-4334f.firebaseapp.com",
+databaseURL: "https://myqr-4334f.firebaseio.com",
+projectId: "myqr-4334f",
+storageBucket: "myqr-4334f.appspot.com",
+messagingSenderId: "771486930642",
+appId: "1:771486930642:web:a44ec4941d89d3e3437f0b",
+measurementId: "G-YWHBNRHN20"
+};
+	firebase.initializeApp(config);
+
+	//sign in anon
+</script>
+
+<script>
+console.log("debut");
+var database = firebase.database();
+var Ref = database.ref('users').getRef();
+
+var listAllRes = [] ;
+
+// GET RESIDENTS
+var tbody = document.getElementById('tbody');
+
+Ref.orderByChild("nom").on('value', function(snapshot) {
+		tbody.innerHTML = "";
+    snapshot.forEach(function(childSnapshot) {
+    	var key = childSnapshot.key;
+		var nom = childSnapshot.child("nom").val();
+		var telephone = childSnapshot.child("telephone").val();
+        var address = childSnapshot.child("address").val();
+        var sang = childSnapshot.child("sang").val();
+		var email = childSnapshot.child("email").val();
+		var actif = childSnapshot.child("actif").val();
+
+
+
+        var resModel = new userModel(key, nom, telephone, sang, address, email, actif);
+        console.log("search, res : "+resModel.getApt);
+        listAllRes.push(resModel);
+
+
+
+		populateTable(resModel);
+
+	});
+
+    console.log("res size : "+listAllRes.length);
+
+});
+
+
+</script>
+
+<script>
+function populateTable(resident) {
+
+	var tr = document.createElement("tr");
+    tr.className  = "row100 body";
+
+    /*var trHead = document.createElement("tr");
+    var thNom = document.createElement("th");
+    var thEmail = document.createElement("th");
+    var thTel = document.createElement("th");
+    thNom.innerHTML = "Nom" ;
+    thEmail.innerHTML = "Email" ;
+    thTel.innerHTML = "Téléphone" ;
+
+    trHead.appendChild(thNom);
+    trHead.appendChild(thTel);
+    trHead.appendChild(thEmail);*/
+
+
+			tr.className  = "row100 body";
+
+			var tdNom = document.createElement("td");
+			tdNom.className  = "cell100 column1";
+			var ahref = document.createElement("a");
+			var link =
+			"edit/edit.html?key="+resident.getKey+"&nom="+resident.getNom+"&telephone="+resident.getTel+"&email="+resident.getEmail+"&sang="+
+			resident.getSang+"&address="+resident.getAddress+"&actif="+resident.getActif;
+
+			ahref.setAttribute('href', link);
+			ahref.innerHTML = resident.getNom;
+			tdNom.appendChild(ahref);
+
+			var tdTel = document.createElement("td");
+			tdTel.className  = "cell100 column2";
+
+			var tdEmail = document.createElement("td");
+			tdEmail.className  = "cell100 column3";
+
+			var tdSang = document.createElement("td");
+			tdSang.className  = "cell100 column4";
+
+			var tdAddress = document.createElement("td");
+			tdAddress.className  = "cell100 column5";
+
+			var tdCode = document.createElement("td");
+			tdCode.className  = "cell100 column6";
+
+			var tdActif = document.createElement("td");
+			tdActif.className  = "cell100 column7";
+
+
+
+			var strwhite  = '<span style=color:#ffffff>  | </span>' ;
+			tdTel.innerHTML = resident.getTel;
+			tdEmail.innerHTML = resident.getEmail;
+			tdSang.innerHTML = resident.getSang;
+			tdAddress.innerHTML = resident.getAddress;
+			tdCode.innerHTML = resident.getKey;
+			if(resident.getActif ==false)
+			tdActif.innerHTML = 'inactif';
+			else tdActif.innerHTML = 'actif';
+
+			tr.appendChild(tdNom);
+			tr.appendChild(tdTel);
+			tr.appendChild(tdEmail);
+			tr.appendChild(tdSang);
+			tr.appendChild(tdAddress);
+			tr.appendChild(tdCode);
+			tr.appendChild(tdActif);
+
+
+			tbody.appendChild(tr);
+
+}
+
+function textType(type){
+	var text = "";
+	if(type=="locataire"){
+		text = "Locataire";
+	}
+	else if(type=="proprio"){
+		text = "Propriétaire";
+	}
+	return text;
+}
+</script>
+
+<script>
+var selectSearch = document.getElementById('selectSearch');
+function searchResident(){
+    var tbody = document.getElementById('tbody');
+	var text = $("#search").val();
+	var categorie = selectSearch.options[selectSearch.selectedIndex].value;
+	console.log("\n\n\nsearch: "+text);
+	console.log("select: "+categorie);
+    console.log("res size : "+listAllRes.length);
+
+	if ((text != '')&&(categorie != 'Catégorie')){
+        console.log("About to search");
+        tbody.innerHTML = "";
+        listAllRes.forEach(function (oneRes) {
+            //console.log(oneRes.getNom);
+            //Search by Email
+            if (categorie == 'email'){
+                if (oneRes.getEmail.toLowerCase().includes(text.toLowerCase())){
+                    console.log("just found "+oneRes.getEmail);
+                    populateTable(oneRes);
+                }
+            }
+            //Search by Name
+            if (categorie == 'nom'){
+                if (oneRes.getNom.toLowerCase().includes(text.toLowerCase())){
+                    console.log("just found "+oneRes.getNom);
+                    populateTable(oneRes);
+                }
+            }
+            //Search by Telephone
+            if (categorie == 'telephone'){
+                if ((oneRes.getTel.toLowerCase().includes(text.toLowerCase()))){
+                    console.log("just found "+oneRes.getTel);
+                    populateTable(oneRes);
+                }
+            }
+            //Search by Ilot
+
+        });
+    }
+    else {
+        tbody.innerHTML = "";
+        listAllRes.forEach(function (oneRes) {
+            populateTable(oneRes);
+        });
+    }
+
+
+
+}
+</script>
+
+<script>
+
+class residentModel {
+    constructor(key, nom, tel, tel2 ,tel3, email, ilot, bloc, etage, apt, villa, type, logement) {
+        this.key = key;
+		this.nom = nom;
+		this.tel = tel;
+        this.tel2 = tel2;
+        this.tel3 = tel3;
+		this.email = email;
+		this.ilot = ilot;
+		this.bloc = bloc;
+		this.etage = etage;
+		this.apt = apt;
+		this.villa = villa;
+		this.type = type;
+		this.logement = logement;
+    }
+        get getNom() {
+        return this.nom;
+        }
+		get getKey() {
+        return this.key;
+		}
+		get getTel() {
+        return this.tel;
+		}
+        get getTel2() {
+        return this.tel2;
+        }
+        get getTel3() {
+        return this.tel3;
+        }
+		get getEmail() {
+        return this.email;
+		}
+		get getIlot() {
+        return this.ilot;
+		}
+		get getBloc() {
+        return this.bloc;
+		}
+		get getEtage() {
+        return this.etage;
+		}
+		get getApt() {
+        return this.apt;
+		}
+		get getVilla() {
+        return this.villa;
+		}
+		get getType() {
+        return this.type;
+    }
+		get getLogement() {
+        return this.logement;
+    }
+}
+</script>
+
+
+<script>
+
+class userModel {
+    constructor(key, nom, tel,  sang,address , email, actif) {
+    this.key = key;
+		this.nom = nom;
+		this.tel = tel;
+    this.email = email;
+		this.address = address;
+		this.sang = sang;
+		this.actif = actif;
+    }
+        get getNom() {
+        return this.nom;
+        }
+		get getKey() {
+        return this.key;
+		}
+		get getTel() {
+        return this.tel;
+		}
+		get getEmail() {
+        return this.email;
+		}
+		get getAddress() {
+        return this.address;
+		}
+		get getSang() {
+        return this.sang;
+		}
+
+		get getActif() {
+				return this.actif;
+		}
+
+
+}
+</script>
+
+<script>
+
+/*function logout(){
+	var logout = true;
+	$.ajax({
+		type: "POST",
+		url: "../index.php",
+		data: {action: logout},
+		//dataType:'JSON',
+		success: function(response){
+			//alert(response);
+			window.location="../index.php";
+			// put on console what server sent back...
+	}
+});
+
+	return false
+}*/
+
+function generateExcel(){
+    console.log("i'm gonna create it");
+
+    var wb = XLSX.utils.table_to_book(document.getElementById('bigtable'), {sheet:"Users RYAD"});
+    var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
+
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'Liste_Users_'+getDateTime()+'.xlsx');
+}
+
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length);
+    var view = new Uint8Array(buf);
+    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+    return buf;
+}
+
+function getDateTime() {
+    var now     = new Date();
+    var year    = now.getFullYear();
+    var month   = now.getMonth()+1;
+    var day     = now.getDate();
+    var hour    = now.getHours();
+    var minute  = now.getMinutes();
+    //var second  = now.getSeconds();
+    if(month.toString().length == 1) {
+        month = '0'+month;
+    }
+    if(day.toString().length == 1) {
+        day = '0'+day;
+    }
+    if(hour.toString().length == 1) {
+        hour = '0'+hour;
+    }
+    if(minute.toString().length == 1) {
+        minute = '0'+minute;
+    }
+    /*if(second.toString().length == 1) {
+         second = '0'+second;
+    } */
+    var dateTime = day+'_'+month+'_'+year+'_'+hour+minute;
+    return dateTime;
+}
+
+
+
+</script>
+
+</body>
+</html>
